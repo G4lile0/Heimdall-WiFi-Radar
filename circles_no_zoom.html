@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+circle {
+  fill: rgb(31, 119, 180);
+  fill-opacity: .25;
+  stroke: rgb(31, 119, 180);
+  stroke-width: 1px;
+}
+
+.leaf circle {
+  fill: #ff7f0e;
+  fill-opacity: 1;
+}
+
+text {
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
+
+</style>
+<svg width="960" height="960"></svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+var circles = {"name": "root", "children": [{"name": "Samsung", "size": 6.0}, {"name": "Unknown", "size": 5.656854249492381}, {"name": "Comtrend", "children": [{"name": "Apple", "size": 4.0}, {"name": "Comtrend", "size": 4.898979485566356}]}, {"name": "MitsumiE", "size": 6.928203230275509}, {"name": "ASUS", "children": [{"name": "Cybertan", "size": 10.770329614269007}, {"name": "MurataMa", "size": 10.770329614269007}, {"name": "Huawei", "size": 10.954451150103322}]}, {"name": "Mitrasta", "size": 5.291502622129181}, {"name": "Apple", "children": [{"name": "Comtrend", "size": 2.8284271247461903}]}, {"name": "Comtrend", "children": [{"name": "Comtrend", "size": 3.4641016151377544}, {"name": "Apple", "size": 4.898979485566356}, {"name": "Unknown", "size": 4.47213595499958}]}, {"name": "Arcadyan", "children": [{"name": "Arcadyan", "size": 3.4641016151377544}]}, {"name": "Mitrasta", "size": 6.0}, {"name": "MitsumiE", "size": 6.6332495807108}, {"name": "Amper", "size": 5.291502622129181}, {"name": "Mitrasta", "size": 4.898979485566356}, {"name": "AskeyCom", "children": [{"name": "AskeyCom", "size": 2.8284271247461903}]}, {"name": "AskeyCom", "children": [{"name": "AskeyCom", "size": 4.898979485566356}, {"name": "Unknown", "size": 6.0}, {"name": "Motorola", "size": 6.324555320336759}, {"name": "AskeyCom", "size": 5.656854249492381}]}, {"name": "Motorola", "size": 5.656854249492381}, {"name": "Unknown", "size": 15.748015748023622}, {"name": "Arcadyan", "children": [{"name": "Arcadyan", "size": 4.0}, {"name": "HonHaiPr", "size": 4.898979485566356}, {"name": "Google", "size": 4.47213595499958}]}, {"name": "Unknown", "children": [{"name": "Samsung", "size": 6.0}]}, {"name": "Lesswire", "size": 8.48528137423857}, {"name": "AskeyCom", "children": [{"name": "AskeyCom", "size": 5.291502622129181}, {"name": "HP", "size": 5.291502622129181}, {"name": "AskeyCom", "size": 4.898979485566356}]}, {"name": "TP-Link", "children": [{"name": "Espressi", "size": 15.0996688705415}, {"name": "Unknown", "size": 15.620499351813308}, {"name": "Intel", "size": 14.966629547095765}, {"name": "Elitegro", "size": 15.620499351813308}, {"name": "XiaomiCo", "size": 15.362291495737216}, {"name": "Intel", "size": 15.0996688705415}]}, {"name": "Mitrasta", "children": [{"name": "Mitrasta"}, {"name": "Huawei", "size": 4.898979485566356}]}, {"name": "TP-Link", "children": [{"name": "Unknown", "size": 8.0}]}, {"name": "Unknown", "children": [{"name": "Apple", "size": 9.797958971132712}]}, {"name": "MitsumiE", "size": 6.6332495807108}, {"name": "CompexPt", "size": 7.745966692414834}, {"name": "Unknown", "size": 6.6332495807108}, {"name": "WistronN", "size": 6.324555320336759}, {"name": "CompexPt", "size": 5.291502622129181}, {"name": "Amper", "size": 4.0}, {"name": "Unknown", "children": [{"name": "Unknown", "size": 5.291502622129181}]}, {"name": "Samsung", "size": 4.47213595499958}, {"name": "Unknown", "size": 4.898979485566356}, {"name": "Ubiquiti", "children": [{"name": "Routerbo", "size": 6.324555320336759}, {"name": "Huawei", "size": 5.291502622129181}, {"name": "Samsung", "size": 5.291502622129181}, {"name": "Samsung", "size": 6.0}, {"name": "Fujitsu", "size": 4.0}, {"name": "Huawei", "size": 6.0}]}, {"name": "Arcadyan", "children": [{"name": "Samsung", "size": 11.135528725660043}, {"name": "XiaomiCo", "size": 5.656854249492381}, {"name": "Apple", "size": 12.806248474865697}, {"name": "Unknown", "size": 11.832159566199232}, {"name": "TP-Link", "size": 12.806248474865697}, {"name": "Apple", "size": 13.114877048604}, {"name": "Samsung", "size": 9.797958971132712}, {"name": "Arcadyan", "size": 12.165525060596439}]}, {"name": "Unknown", "children": [{"name": "Quantenn", "size": 10.954451150103322}, {"name": "Huawei", "size": 10.770329614269007}, {"name": "Unknown", "size": 10.770329614269007}]}, {"name": "GlodioTe", "size": 6.6332495807108}, {"name": "HP", "size": 6.324555320336759}, {"name": "Zte", "size": 4.898979485566356}, {"name": "MitsumiE", "size": 6.0}, {"name": "AskeyCom", "children": [{"name": "Samsung", "size": 5.291502622129181}, {"name": "ASUS", "size": 4.0}, {"name": "Huawei", "size": 4.898979485566356}, {"name": "Synology", "size": 4.898979485566356}, {"name": "AskeyCom", "size": 4.898979485566356}, {"name": "Apple", "size": 6.324555320336759}]}, {"name": "Mitrasta", "size": 4.47213595499958}, {"name": "Unknown", "size": 1}, {"name": "Tecom", "size": 4.47213595499958}, {"name": "Mitrasta", "children": [{"name": "Huawei", "size": 5.291502622129181}, {"name": "Unknown", "size": 3.4641016151377544}, {"name": "Unknown"}, {"name": "Huawei", "size": 5.291502622129181}, {"name": "Unknown", "size": 5.291502622129181}, {"name": "Samsung", "size": 6.0}, {"name": "Samsung", "size": 4.898979485566356}, {"name": "Mitrasta", "size": 4.47213595499958}, {"name": "Zte", "size": 5.656854249492381}]}, {"name": "Amper", "size": 3.4641016151377544}, {"name": "Apple", "size": 10.583005244258363}, {"name": "Lesswire", "size": 7.211102550927978}, {"name": "Arcadyan", "children": [{"name": "Arcadyan", "size": 6.0}, {"name": "HonHaiPr", "size": 4.47213595499958}]}, {"name": "Mitrasta", "children": [{"name": "Apple", "size": 4.47213595499958}, {"name": "Apple", "size": 5.291502622129181}, {"name": "Mitrasta", "size": 4.0}, {"name": "Apple", "size": 5.656854249492381}, {"name": "Samsung", "size": 4.47213595499958}]}, {"name": "Bq", "size": 6.6332495807108}, {"name": "Unknown", "children": [{"name": "Mitrasta", "size": 4.0}]}, {"name": "AskeyCom", "children": [{"name": "AskeyCom", "size": 4.898979485566356}, {"name": "ASUS", "size": 4.898979485566356}]}, {"name": "Unknown", "size": 8.246211251235321}, {"name": "Huawei", "size": 8.0}, {"name": "Unknown", "children": [{"name": "Apple", "size": 5.656854249492381}, {"name": "AirgoNet", "size": 5.656854249492381}, {"name": "Unknown", "size": 5.656854249492381}, {"name": "Apple", "size": 6.0}, {"name": "Unknown", "size": 5.291502622129181}]}, {"name": "Bq", "size": 6.928203230275509}, {"name": "MitsumiE", "size": 6.0}, {"name": "Arcadyan", "children": [{"name": "Arcadyan", "size": 4.47213595499958}]}, {"name": "Zte", "children": [{"name": "Pegatron", "size": 6.928203230275509}]}, {"name": "Netgear", "size": 2.8284271247461903}, {"name": "Unknown", "size": 16.492422502470642}, {"name": "Zte", "children": [{"name": "Bq", "size": 5.656854249492381}]}, {"name": "GarminIn", "size": 6.0}, {"name": "Unknown", "size": 5.291502622129181}, {"name": "Arcadyan", "children": [{"name": "Samsung", "size": 6.0}, {"name": "Arcadyan", "size": 4.47213595499958}, {"name": "Samsung", "size": 5.291502622129181}]}, {"name": "Arcadyan", "children": [{"name": "Arcadyan", "size": 4.47213595499958}, {"name": "Apple", "size": 5.291502622129181}]}, {"name": "Comtrend", "children": [{"name": "Apple", "size": 5.291502622129181}, {"name": "Comtrend", "size": 4.47213595499958}]}, {"name": "Zte", "size": 4.898979485566356}, {"name": "D-Link", "size": 4.898979485566356}, {"name": "Arcadyan", "children": [{"name": "Huawei", "size": 5.291502622129181}, {"name": "Unknown", "size": 4.898979485566356}, {"name": "Arcadyan", "size": 7.211102550927978}, {"name": "Samsung", "size": 3.4641016151377544}, {"name": "Samsung", "size": 4.0}, {"name": "Bq", "size": 6.324555320336759}, {"name": "Nokia", "size": 7.211102550927978}]}, {"name": "Unknown", "size": 3.4641016151377544}, {"name": "D-Link", "size": 7.483314773547883}, {"name": "Motorola", "size": 6.324555320336759}, {"name": "Zte", "children": [{"name": "Unknown", "size": 5.656854249492381}, {"name": "Samsung", "size": 4.47213595499958}, {"name": "Samsung", "size": 5.656854249492381}]}, {"name": "Arcadyan", "children": [{"name": "Arcadyan", "size": 6.324555320336759}]}, {"name": "TP-Link", "children": [{"name": "Apple", "size": 8.48528137423857}, {"name": "Huawei", "size": 9.797958971132712}]}, {"name": "Zte", "children": [{"name": "TP-Link", "size": 16.73320053068151}, {"name": "Zte", "size": 16.492422502470642}, {"name": "Apple", "size": 12.165525060596439}, {"name": "XiaomiCo", "size": 17.320508075688775}, {"name": "BelkinIn", "size": 9.591663046625438}, {"name": "Unknown", "size": 16.492422502470642}, {"name": "RealtekS", "size": 9.797958971132712}]}, {"name": "Arcadyan", "size": 4.0}]};
+
+
+
+
+
+
+
+var svg = d3.select("svg"),
+    diameter = +svg.attr("width"),
+    g = svg.append("g").attr("transform", "translate(2,2)"),
+    format = d3.format(",d");
+
+var pack = d3.pack()
+    .size([diameter - 4, diameter - 4]);
+
+
+  root = d3.hierarchy(circles)
+      .sum(function(d) { return d.size; })
+      .sort(function(a, b) { return b.value - a.value; });
+
+  var node = g.selectAll(".node")
+    .data(pack(root).descendants())
+    .enter().append("g")
+      .attr("class", function(d) { return d.children ? "node" : "leaf node"; })
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+  node.append("title")
+      .text(function(d) { return d.data.name + "\n" + format(d.value); });
+
+  node.append("circle")
+      .attr("r", function(d) { return d.r; });
+
+  node.filter(function(d) { return !d.children; }).append("text")
+      .attr("dy", "0.3em")
+      .text(function(d) { return d.data.name.substring(0, d.r / 3); });
+
+
+</script>
